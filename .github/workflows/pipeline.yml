@@ -54,7 +54,7 @@ jobs:
             ytrain.csv
             ytest.csv
  
-  model-training:
+   model-training:
     needs: data-preparation
     runs-on: ubuntu-latest
     steps:
