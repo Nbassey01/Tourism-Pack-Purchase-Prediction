@@ -10,7 +10,8 @@ permissions:
   contents: write
 
 jobs:
-   register-dataset:
+
+  register-dataset:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,34 +28,34 @@ jobs:
           name: registered-data
           path: tourism_purchase/data/tourism.csv
 
-   data-preparation:
-    needs: register-dataset
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Install Dependencies
-        run: pip install -r tourism_purchase/requirements.txt
-      - name: Download Registered Dataset         
-        uses: actions/download-artifact@v4
-        with:
-          name: registered-data
-          path: tourism_purchase/data/
-      - name: Data Preparation
-        run: python tourism_purchase/model_building/prep.py
-      - name: Upload Train Test Splits
-        uses: actions/upload-artifact@v4
-        with:
-          name: data-splits
-          path: |
-            Xtrain.csv
-            Xtest.csv
-            ytrain.csv
-            ytest.csv
-          
-   model-training:
+  data-preparation:
+  needs: register-dataset
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Install Dependencies
+      run: pip install -r tourism_purchase/requirements.txt
+    - name: Download Registered Dataset    # ADD THIS STEP
+      uses: actions/download-artifact@v4
+      with:
+        name: registered-data
+        path: tourism_purchase/data/
+    - name: Run Data Preparation
+      run: python tourism_purchase/model_building/prep.py
+    - name: Upload Train Test Splits
+      uses: actions/upload-artifact@v4
+      with:
+        name: data-splits
+        path: |
+          Xtrain.csv
+          Xtest.csv
+          ytrain.csv
+          ytest.csv
+
+  model-training:
     needs: data-preparation
     runs-on: ubuntu-latest
     steps:
