@@ -21,7 +21,7 @@ ytrain = pd.read_csv("ytrain.csv").squeeze()
 ytest = pd.read_csv("ytest.csv").squeeze()
 
 numeric_features = [
-    "Age", "DurationOfPitch", "NumberOfPersonVisiting", "NumberOfFollowups", "CityTier", "NumberOfTrips"
+    "Age", "DurationOfPitch", "NumberOfPersonVisiting", "NumberOfFollowups", "CityTier", "NumberOfTrips",
     "PitchSatisfactionScore", "NumberOfChildrenVisiting", "MonthlyIncome", "PreferredPropertyStar", "Passport", "OwnCar"
 
 ]   # To list all numerical feature names (same as in prep.py)
