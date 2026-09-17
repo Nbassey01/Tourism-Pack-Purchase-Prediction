@@ -21,14 +21,15 @@ ytrain = pd.read_csv("ytrain.csv").squeeze()
 ytest = pd.read_csv("ytest.csv").squeeze()
 
 numeric_features = [
-    "Age", "DurationOfPitch", "NumberOfPersonVisiting", "NumberOfFollowups",
-    "NumberOfTrips", "PitchSatisfactionScore", "NumberOfChildrenVisiting", "MonthlyIncome"
-]   # complete the code to list all numerical feature names (same as in prep.py)
+    "Age", "DurationOfPitch", "NumberOfPersonVisiting", "NumberOfFollowups", "CityTier", "NumberOfTrips"
+    "PitchSatisfactionScore", "NumberOfChildrenVisiting", "MonthlyIncome", "PreferredPropertyStar", "Passport", "OwnCar"
 
-categorical_features = [
-    "TypeofContact", "CityTier", "Occupation", "Gender","PreferredPropertyStar",
-    "MaritalStatus", "Passport",  "OwnCar", "Designation", "ProductPitched"
-]   # complete the code to list all categorical feature names (same as in prep.py)
+]   # To list all numerical feature names (same as in prep.py)
+
+categorical_features =[
+    "TypeofContact", "Occupation", "Gender", "MaritalStatus",  "Designation", "ProductPitched"
+    
+]   # To list all categorical feature names (same as in prep.py)
 
 #  To Set the class weight to handle class imbalance
 class_weight = ytrain.value_counts()[0] / ytrain.value_counts()[1]
