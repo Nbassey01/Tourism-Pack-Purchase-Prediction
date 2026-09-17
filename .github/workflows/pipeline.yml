@@ -40,6 +40,9 @@ jobs:
         run: pip install -r tourism_purchase/requirements.txt
       - name: Download Registered Dataset    # ADD THIS STEP
         uses: actions/download-artifact@v4
+        with:
+        name: registered-data
+        path: tourism_purchase/data/
       - name: Data Preparation
         run: python tourism_purchase/model_building/prep.py
       - name: Upload Train Test Splits
